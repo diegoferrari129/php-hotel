@@ -62,27 +62,27 @@
 
             </div>
 
-            <?php foreach ($hotels as $hotel) { ?>
-                <div class="col-12">
-                    
-                    <table class="table table-striped">
-                        <tr>
-                            <th class="col-3">
-                                Nome
-                            </th>
-
-                            <th class="col-5">
-                                Descrizione
-                            </th>
-
-                            <th class="col-2">
-                                Voto
-                            </th>
-
-                            <th class="col-2">
-                                Distanza
-                            </th>
-                        </tr>
+            <div class="col-12">
+                
+                <table class="table table-striped">
+                    <tr>
+                        <th class="col-3">
+                            Nome
+                        </th>
+                        
+                        <th class="col-5">
+                            Descrizione
+                        </th>
+                        
+                        <th class="col-2">
+                            Voto
+                        </th>
+                        
+                        <th class="col-2">
+                            Distanza
+                        </th>
+                    </tr>
+                    <?php foreach ($hotels as $hotel) { ?>
                         <tr>
                             <td class="col-3">
                                 <?php echo $hotel['name']; ?>
@@ -100,10 +100,9 @@
                                 <?php echo $hotel['distance_to_center']; ?>
                             </td>
                         </tr>
-                    </table>
-
-                </div>
-            <?php } ?>
+                    <?php } ?>
+                </table>
+            </div>
         </div>
     </div>
 </body>
