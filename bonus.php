@@ -40,6 +40,37 @@
 
     ];
 
+    $filteredHotels = $hotels;
+    
+    if(isset($_GET['parking']) && $_GET['parking'] !=''){
+
+        $filteredHotels = [];
+
+        foreach($hotels as $item){
+            if(in_array(true, array($item['parking']))) {
+
+                $filteredHotels[] = $item;
+
+            }
+        }
+
+    }
+
+    if(isset($_GET['vote']) && $_GET['vote'] !=''){
+
+        $filteredHotels = [];
+
+        $vote = intval($_GET['vote']);
+
+        foreach($hotels as $item){
+            if(in_array($vote, array($item['vote']))) { 
+                $filteredHotels[] = $item;
+            }
+
+        }
+
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +83,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <form action="bonus.php" method="get">
+    <form action="./bonus.php" method="get">
         <div class="container">
             <div class="row">
                 <div class="col-12"> 
@@ -63,19 +94,28 @@
 
                         <div class="row">
                             <div class="col-4">
-                                <div class="d-flex mb-3">
+                                <h4 class="pb-2">Cerca in base alle tue esigenze</h4>
+                                <div class="d-flex align-items-center mb-3">
 
-                                    <select name="parking" id="parking">
-                                        <option value="">Filtra</option>
-                                        <option value="0">Con parcheggio</option>
+                                    <span>Solo con Parcheggio</span>
+                                    <input type="checkbox" name="parking" id="parking" class="ms-1 mt-1 me-4">
+
+                                    <select name="vote" id="vote" class="p-1">
+                                        <option value="">Voto</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
                                     </select>
-                                    <button class="btn btn-success ms-3">Cerca</button>
-
+                                    
                                 </div>
+
+                                <button class="btn btn-success mb-5">Cerca</button>
+
                             </div>
 
                         </div>
-                        
                         
                     </div>
                     
@@ -99,7 +139,7 @@
                                     Distanza
                                 </th>
                             </tr>
-                            <?php foreach ($hotels as $hotel) { ?>
+                            <?php foreach ($filteredHotels as $hotel) { ?>
                                 <tr>
                                     <td class="col-3">
                                         <?php echo $hotel['name']; ?>
@@ -117,7 +157,7 @@
                                         <?php echo $hotel['distance_to_center']; ?>
                                     </td>
                                 </tr>
-                                <?php } ?>
+                            <?php } ?>
                             </table>
                         </div>
                     </div>
